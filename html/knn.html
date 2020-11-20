@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+</head>
+<body>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	
+	<script>
+ $(document).ready(function () {
+    var container = $(".recommence");
+    container.html("");
+     $.ajax({
+      "url": "https://localhost:44358/api/product-management/1",
+      "method": "GET",
+      
+  }).done(function (products) {
+  console.log(products);
+   
+           for(let i = 0; i < products.length; i++)
+    {
+            var url  = products[i].ImageStorages[0].ImageUrl;
+            var alt = products[i].ImageStorages[0].Alt;
+            var html = `
+                <div class="prd prd-has-loader prd-new prd-popular">
+                        <div class="prd-inside">
+                            <div class="prd-img-area">
+                                <a href="product.html" class="prd-img"><img src=${url} data-srcset=${url} alt=${alt} class="js-prd-img lazyload"></a>
+                                <div class="label-new">NEW</div>
+                                <a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
+                                <ul class="list-options color-swatch prd-hidemobile">
+                                    <li data-image="images/products/product-01.jpg">
+                                        <a href="#" class="js-color-toggle"><img src=${url} data-srcset=${url} class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                    <li data-image="images/products/product-01-2.jpg">
+                                        <a href="#" class="js-color-toggle"><img src=${url} data-srcset=${url} class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                </ul>
+                                <div class="gdw-loader"></div>
+                            </div>
+                            <div class="prd-info">
+                                <div class="prd-tag prd-hidemobile"><a href="#">${products[i].Description}</a></div>
+                                <h2 class="prd-title"><a href="product.html">${products[i].Name}</a></h2>
+                                <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
+                                <div class="prd-price">
+                                    <div class="price-new">$ ${products[i].CurrentPrice}</div>
+                                </div>
+                                <div class="prd-hover">
+                                    <div class="prd-action">
+                                        <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Add To Cart</span></button></form>
+                                        <div class="prd-links">
+                                            <a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a>
+                                        </div>
+                                    </div>
+                                    <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
+                                        <ul class="list-options size-swatch">
+                                            <li class="active"><span>xs</span></li>
+                                            <li><span>s</span></li>
+                                            <li><span>m</span></li>
+                                            <li><span>l</span></li>
+                                            <li><span>xl</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+      
+         container.append(html);
+  };
+});
+});
+    </script>
+	<div class="holder">
+            <div class="container">
+                <div class="title-wrap text-center">
+                    <h2 class="h1-style">RELATED PRODUCTS</h2>
+                </div>
+                <div class="prd-grid prd-carousel js-prd-carousel recommence  slick-arrows-aside-simple slick-arrows-mobile-lg data-to-show-4 data-to-show-md-3 data-to-show-sm-3 data-to-show-xs-2 " data-slick='{"slidesToShow": 4, "slidesToScroll": 2, "responsive": [{"breakpoint": 992,"settings": {"slidesToShow": 3, "slidesToScroll": 1}},{"breakpoint": 768,"settings": {"slidesToShow": 2, "slidesToScroll": 1}},{"breakpoint": 480,"settings": {"slidesToShow": 2, "slidesToScroll": 1}}]}'>
+                    <!-- <div class="prd prd-has-loader prd-new prd-popular">
+                        <div class="prd-inside">
+                            <div class="prd-img-area">
+                                <a href="product.html" class="prd-img"><img src="images/products/product-placeholder.png" data-srcset="images/products/product-01.jpg" alt="Glamor shoes" class="js-prd-img lazyload"></a>
+                                <div class="label-new">NEW</div>
+                                <a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
+                                <ul class="list-options color-swatch prd-hidemobile">
+                                    <li data-image="images/products/product-01.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-01.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                    <li data-image="images/products/product-01-2.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-01-2.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                </ul>
+                                <div class="gdw-loader"></div>
+                            </div>
+                            <div class="prd-info">
+                                <div class="prd-tag prd-hidemobile"><a href="#">under armor</a></div>
+                                <h2 class="prd-title"><a href="product.html">Glamor shoes</a></h2>
+                                <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
+                                <div class="prd-price">
+                                    <div class="price-new">$ 34.00</div>
+                                </div>
+                                <div class="prd-hover">
+                                    <div class="prd-action">
+                                        <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Add To Cart</span></button></form>
+                                        <div class="prd-links">
+                                            <a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a>
+                                        </div>
+                                    </div>
+                                    <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
+                                        <ul class="list-options size-swatch">
+                                            <li class="active"><span>xs</span></li>
+                                            <li><span>s</span></li>
+                                            <li><span>m</span></li>
+                                            <li><span>l</span></li>
+                                            <li><span>xl</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                     <!--<div class="prd prd-has-loader prd-new prd-popular">
+                        <div class="prd-inside">
+                            <div class="prd-img-area">
+                                <a href="product.html" class="prd-img"><img src="images/products/product-placeholder.png" data-srcset="images/products/product-01.jpg" alt="Glamor shoes" class="js-prd-img lazyload"></a>
+                                <div class="label-new">NEW</div>
+                                <a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
+                                <ul class="list-options color-swatch prd-hidemobile">
+                                    <li data-image="images/products/product-01.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-01.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                    <li data-image="images/products/product-01-2.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-01-2.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                </ul>
+                                <div class="gdw-loader"></div>
+                            </div>
+                            <div class="prd-info">
+                                <div class="prd-tag prd-hidemobile"><a href="#">under armor</a></div>
+                                <h2 class="prd-title"><a href="product.html">Glamor shoes</a></h2>
+                                <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
+                                <div class="prd-price">
+                                    <div class="price-new">$ 34.00</div>
+                                </div>
+                                <div class="prd-hover">
+                                    <div class="prd-action">
+                                        <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Add To Cart</span></button></form>
+                                        <div class="prd-links">
+                                            <a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a>
+                                        </div>
+                                    </div>
+                                    <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
+                                        <ul class="list-options size-swatch">
+                                            <li class="active"><span>xs</span></li>
+                                            <li><span>s</span></li>
+                                            <li><span>m</span></li>
+                                            <li><span>l</span></li>
+                                            <li><span>xl</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prd prd-has-loader prd-new">
+                        <div class="prd-inside">
+                            <div class="prd-img-area">
+                                <a href="product.html" class="prd-img"><img src="images/products/product-placeholder.png" data-srcset="images/products/product-02.jpg" alt="Long top with print" class="js-prd-img lazyload"></a>
+                                <div class="label-new">NEW</div>
+                                <a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
+                                <ul class="list-options color-swatch prd-hidemobile">
+                                    <li data-image="images/products/product-02.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-02.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                    <li data-image="images/products/product-02-2.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-02-2.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                </ul>
+                                <div class="gdw-loader"></div>
+                            </div>
+                            <div class="prd-info">
+                                <div class="prd-tag prd-hidemobile"><a href="#">canverse</a></div>
+                                <h2 class="prd-title"><a href="product.html">Long top with print</a></h2>
+                                <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
+                                <div class="prd-price">
+                                    <div class="price-new">$ 20.00</div>
+                                </div>
+                                <div class="prd-hover">
+                                    <div class="prd-action">
+                                        <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Add To Cart</span></button></form>
+                                        <div class="prd-links">
+                                            <a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a>
+                                        </div>
+                                    </div>
+                                    <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
+                                        <ul class="list-options size-swatch">
+                                            <li class="active"><span>xs</span></li>
+                                            <li><span>s</span></li>
+                                            <li><span>m</span></li>
+                                            <li><span>l</span></li>
+                                            <li><span>xl</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="prd prd-has-loader prd-sale prd-popular prd-has-countdown">
+                        <div class="prd-inside">
+                            <div class="prd-img-area">
+                                <a href="product.html" class="prd-img"><img src="images/products/product-placeholder.png" data-srcset="images/products/product-03.jpg" alt="Tie with texture" class="js-prd-img lazyload"></a>
+                                <div class="label-sale">-51%</div>
+                                <a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
+                                <ul class="list-options color-swatch prd-hidemobile">
+                                    <li data-image="images/products/product-03.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-03.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                    <li data-image="images/products/product-03-2.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-03-2.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                    <li data-image="images/products/product-03-3.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-03-3.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                </ul>
+                                <div class="countdown-box">
+                                    <div class="countdown js-countdown" data-countdown="2019/12/31"></div>
+                                </div>
+                                <div class="gdw-loader"></div>
+                            </div>
+                            <div class="prd-info">
+                                <div class="prd-tag prd-hidemobile"><a href="#">colvin klein</a></div>
+                                <h2 class="prd-title"><a href="product.html">Tie with texture</a></h2>
+                                <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
+                                <div class="prd-price">
+                                    <div class="price-new">$ 34.00</div>
+                                    <div class="price-old">$ 70.00</div>
+                                    <div class="price-comment">You save $ 36.00</div>
+                                </div>
+                                <div class="prd-hover">
+                                    <div class="prd-action">
+                                        <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Add To Cart</span></button></form>
+                                        <div class="prd-links">
+                                            <a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a>
+                                        </div>
+                                    </div>
+                                    <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
+                                        <ul class="list-options size-swatch">
+                                            <li class="active"><span>xs</span></li>
+                                            <li><span>s</span></li>
+                                            <li><span>m</span></li>
+                                            <li><span>l</span></li>
+                                            <li><span>xl</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prd prd-has-loader prd-popular prd-outstock">
+                        <div class="prd-inside">
+                            <div class="prd-img-area">
+                                <a href="product.html" class="prd-img"><img src="images/products/product-placeholder.png" data-srcset="images/products/product-04.jpg" alt="Fashionable jacket" class="js-prd-img lazyload"></a>
+                                <div class="label-outstock">OUT OF STOCK</div>
+                                <a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
+                                <div class="gdw-loader"></div>
+                            </div>
+                            <div class="prd-info">
+                                <div class="prd-tag prd-hidemobile"><a href="#">the south face</a></div>
+                                <h2 class="prd-title"><a href="product.html">Fashionable jacket</a></h2>
+                                <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
+                                <div class="prd-price">
+                                    <div class="price-new">$ 280.00</div>
+                                </div>
+                                <div class="prd-hover">
+                                    <div class="prd-action">
+                                        <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Add To Cart</span></button></form>
+                                        <div class="prd-links">
+                                            <a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a>
+                                        </div>
+                                    </div>
+                                    <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
+                                        <ul class="list-options size-swatch">
+                                            <li class="active"><span>xs</span></li>
+                                            <li><span>s</span></li>
+                                            <li><span>m</span></li>
+                                            <li><span>l</span></li>
+                                            <li><span>xl</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prd prd-has-loader prd-sale prd-new prd-has-countdown">
+                        <div class="prd-inside">
+                            <div class="prd-img-area">
+                                <a href="product.html" class="prd-img"><img src="images/products/product-placeholder.png" data-srcset="images/products/product-05.jpg" alt="Checkered shirt" class="js-prd-img lazyload"></a>
+                                <div class="label-sale">-62%</div>
+                                <div class="label-new">NEW</div>
+                                <a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
+                                <ul class="list-options color-swatch prd-hidemobile">
+                                    <li data-image="images/products/product-05.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-05.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                    <li data-image="images/products/product-05-2.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-05-2.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                </ul>
+                                <div class="countdown-box">
+                                    <div class="countdown js-countdown" data-countdown="2019/12/31"></div>
+                                </div>
+                                <div class="gdw-loader"></div>
+                            </div>
+                            <div class="prd-info">
+                                <div class="prd-tag prd-hidemobile"><a href="#">canverse</a></div>
+                                <h2 class="prd-title"><a href="product.html">Checkered shirt</a></h2>
+                                <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
+                                <div class="prd-price">
+                                    <div class="price-new">$ 75.00</div>
+                                    <div class="price-old">$ 200.00</div>
+                                    <div class="price-comment">You save $ 125.00</div>
+                                </div>
+                                <div class="prd-hover">
+                                    <div class="prd-action">
+                                        <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Add To Cart</span></button></form>
+                                        <div class="prd-links">
+                                            <a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a>
+                                        </div>
+                                    </div>
+                                    <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
+                                        <ul class="list-options size-swatch">
+                                            <li class="active"><span>xs</span></li>
+                                            <li><span>s</span></li>
+                                            <li><span>m</span></li>
+                                            <li><span>l</span></li>
+                                            <li><span>xl</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prd prd-has-loader prd-popular">
+                        <div class="prd-inside">
+                            <div class="prd-img-area">
+                                <a href="product.html" class="prd-img"><img src="images/products/product-placeholder.png" data-srcset="images/products/product-06.jpg" alt="Louboutin" class="js-prd-img lazyload"> </a>
+                                <a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
+                                <ul class="list-options color-swatch prd-hidemobile">
+                                    <li data-image="images/products/product-06.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-06.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                    <li data-image="images/products/product-06-2.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-06-2.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                </ul>
+                                <div class="gdw-loader"></div>
+                            </div>
+                            <div class="prd-info">
+                                <div class="prd-tag prd-hidemobile"><a href="#">dacoste</a></div>
+                                <h2 class="prd-title"><a href="product.html">Louboutin</a></h2>
+                                <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
+                                <div class="prd-price">
+                                    <div class="price-new">$ 11.00</div>
+                                </div>
+                                <div class="prd-hover">
+                                    <div class="prd-action">
+                                        <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Add To Cart</span></button></form>
+                                        <div class="prd-links">
+                                            <a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a>
+                                        </div>
+                                    </div>
+                                    <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
+                                        <ul class="list-options size-swatch">
+                                            <li class="active"><span>xs</span></li>
+                                            <li><span>s</span></li>
+                                            <li><span>m</span></li>
+                                            <li><span>l</span></li>
+                                            <li><span>xl</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prd prd-has-loader prd-sale prd-has-countdown">
+                        <div class="prd-inside">
+                            <div class="prd-img-area">
+                                <a href="product.html" class="prd-img"><img src="images/products/product-placeholder.png" data-srcset="images/products/product-07.jpg" alt="Long shirts" class="js-prd-img lazyload"></a>
+                                <div class="label-sale">-31%</div>
+                                <a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
+                                <ul class="list-options color-swatch prd-hidemobile">
+                                    <li data-image="images/products/product-07.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-07.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                    <li data-image="images/products/product-07-2.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-07-2.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                </ul>
+                                <div class="countdown-box">
+                                    <div class="countdown js-countdown" data-countdown="2019/12/31"></div>
+                                </div>
+                                <div class="gdw-loader"></div>
+                            </div>
+                            <div class="prd-info">
+                                <div class="prd-tag prd-hidemobile"><a href="#">koach</a></div>
+                                <h2 class="prd-title"><a href="product.html">Long shirts</a></h2>
+                                <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
+                                <div class="prd-price">
+                                    <div class="price-new">$ 110.00</div>
+                                    <div class="price-old">$ 160.00</div>
+                                    <div class="price-comment">You save $ 50.00</div>
+                                </div>
+                                <div class="prd-hover">
+                                    <div class="prd-action">
+                                        <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Add To Cart</span></button></form>
+                                        <div class="prd-links">
+                                            <a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a>
+                                        </div>
+                                    </div>
+                                    <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
+                                        <ul class="list-options size-swatch">
+                                            <li class="active"><span>xs</span></li>
+                                            <li><span>s</span></li>
+                                            <li><span>m</span></li>
+                                            <li><span>l</span></li>
+                                            <li><span>xl</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prd prd-has-loader prd-sale prd-new prd-has-countdown">
+                        <div class="prd-inside">
+                            <div class="prd-img-area">
+                                <a href="product.html" class="prd-img"><img src="images/products/product-placeholder.png" data-srcset="images/products/product-08.jpg" alt="Office bag" class="js-prd-img lazyload"></a>
+                                <div class="label-sale">-30%</div>
+                                <div class="label-new">NEW</div>
+                                <a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
+                                <ul class="list-options color-swatch prd-hidemobile">
+                                    <li data-image="images/products/product-08.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-08.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                    <li data-image="images/products/product-08-2.jpg">
+                                        <a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-08-2.jpg" class="lazyload" alt="Color Name"></a>
+                                    </li>
+                                </ul>
+                                <div class="countdown-box">
+                                    <div class="countdown js-countdown" data-countdown="2019/12/31"></div>
+                                </div>
+                                <div class="gdw-loader"></div>
+                            </div>
+                            <div class="prd-info">
+                                <div class="prd-tag prd-hidemobile"><a href="#">clorks</a></div>
+                                <h2 class="prd-title"><a href="product.html">Office bag</a></h2>
+                                <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
+                                <div class="prd-price">
+                                    <div class="price-new">$ 210.00</div>
+                                    <div class="price-old">$ 300.00</div>
+                                    <div class="price-comment">You save $ 90.00</div>
+                                </div>
+                                <div class="prd-hover">
+                                    <div class="prd-action">
+                                        <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Add To Cart</span></button></form>
+                                        <div class="prd-links">
+                                            <a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a>
+                                        </div>
+                                    </div>
+                                    <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
+                                        <ul class="list-options size-swatch">
+                                            <li class="active"><span>xs</span></li>
+                                            <li><span>s</span></li>
+                                            <li><span>m</span></li>
+                                            <li><span>l</span></li>
+                                            <li><span>xl</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  -->
+                </div>
+                <div class="more-link-wrapper text-center mt-3"><a href="#" class="btn-decor">show all</a></div>
+            </div>
+        </div>
+		<script src="js/vendor/jquery/jquery.min.js"></script>
+    <script src="js/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/vendor/slick/slick.min.js"></script>
+    <script src="js/vendor/scrollLock/jquery-scrollLock.min.js"></script>
+    <script src="js/vendor/instafeed/instafeed.min.js"></script>
+    <script src="js/vendor/countdown/jquery.countdown.min.js"></script>
+    <script src="js/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="js/vendor/ez-plus/jquery.ez-plus.min.js"></script>
+    <script src="js/vendor/tocca/tocca.min.js"></script>
+    <script src="js/vendor/bootstrap-tabcollapse/bootstrap-tabcollapse.min.js"></script>
+    <script src="js/vendor/isotope/jquery.isotope.min.js"></script>
+    <script src="js/vendor/fancybox/jquery.fancybox.min.js"></script>
+    <script src="js/vendor/cookie/jquery.cookie.min.js"></script>
+    <script src="js/vendor/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="js/vendor/lazysizes/lazysizes.min.js"></script>
+    <script src="js/vendor/lazysizes/ls.bgset.min.js"></script>
+    <script src="js/vendor/form/jquery.form.min.js"></script>
+    <script src="js/vendor/form/validator.min.js"></script>
+    <script src="js/vendor/slider/slider.js"></script>
+    <script src="js/function/cookie.js"></script>
+    <script src="js/function/cart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/product.js"></script>	
+</body>
+</html>
+ 
