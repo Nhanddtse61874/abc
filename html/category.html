@@ -100,7 +100,7 @@
                                             <li><a href="account-details.html"><i class="icon icon-person-fill"></i><span>My Account</span></a></li>
                                             <li><a href="login.html"><i class="icon icon-lock"></i><span>Log In</span></a></li>
                                             <li><a href="account-create.html"><i class="icon icon-person-fill-add"></i><span>Register</span></a></li>
-                                            <li><a href="checkout.html"><i class="icon icon-check-box"></i><span>Checkout</span></a></li>
+                                            <li><a onclick="logout()"><i class="icon icon-check-box"></i><span>Logout</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -130,23 +130,6 @@
                                                         <li><a href="product.html" title="">Product page variant 1</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="category.html" title="">Category page</a>
-                                                    <ul id="category-menu">
-                                                        <!-- <li><a href="category.html" title="">Left sidebar filters</a></li>
-                                                        <li><a href="category-right-column.html" title="">Right sidebar filters</a></li>
-                                                        <li><a href="category-with-description.html" title="">With category description</a></li>
-                                                        <li><a href="category-no-filters.html" title="">Without filters</a></li>
-                                                        <li><a href="category-empty.html" title="">Empty category</a></li> -->
-                                                    </ul>
-                                                </li>
-                                                <li><a href="cart.html" title="">Cart & Checkout</a>
-                                                    <ul>
-                                                        <li><a href="cart.html" title="">Cart variant 1</a></li>
-                                                       
-                                                        <li><a href="checkout-2.html" title="">Checkout variant 2</a></li>
-                                                       
-                                                    </ul>
-                                                </li>
                                             </ul>
                                         </div>
                                     </li>
@@ -162,7 +145,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="mmenu-item--mega"><a href="collections.html">Shop By<span class="menu-label menu-label--color4">SALE</span></a>
+                                    <li class="mmenu-item--mega"><a href="collections.html">Cart<span class="menu-label menu-label--color4">SALE</span></a>
                                         <div class="mmenu-submenu">
                                             <div class="mmenu-submenu-inside">
                                                 <div class="container">
@@ -1403,7 +1386,15 @@
     <script src="js/categorymenu.js"></script>
     <script src="js/app.js"></script>
     <script src="js/product.js"></script>
-    <script src="js/shoppingCart.js"></script>
+    <script>
+        function logout(){
+    window.localStorage.clear();
+    window.sessionStorage.clear();
+    window.location.href="index.html";
+    
+           }
+    </script>
+    
 </body>
 
 </html>

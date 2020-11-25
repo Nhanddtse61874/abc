@@ -201,29 +201,8 @@
                                                 <div class="container">
                                                     <div class="mmenu-right width-20">
                                                     </div>
-                                                    <div class="mmenu-cols column-5">
-                                                        <div class="mmenu-col">
-                                                            <h3 class="submenu-title"><a href="category.html">men</a></h3>
-                                                            <ul class="submenu-list">
-                                                                <li><a href="category.html">Sneakers</a></li>
-                                                                <li><a href="category.html">Shirts & Tops</a></li>
-                                                                <li><a href="category.html">Bags</a></li>
-                                                                <li><a href="category.html">Trousers</a></li>
-                                                                <li><a href="category.html">Hats</a></li>
-                                                            </ul>
-                                                            <div class="submenu-img"><a href="category.html"><img src="images/placeholder.png" data-src="images/menu/category-img-02.jpg" class="lazyload" alt=""></a></div>
-                                                        </div>
-                                                        <div class="mmenu-col">
-                                                            <h3 class="submenu-title"><a href="category.html">women</a></h3>
-                                                            <ul class="submenu-list">
-                                                                <li><a href="category.html">Sneakers</a></li>
-                                                                <li><a href="category.html">Shirts & Tops</a></li>
-                                                                <li><a href="category.html">Bags</a></li>
-                                                                <li><a href="category.html">Trousers</a></li>
-                                                                <li><a href="category.html">Hats</a></li>
-                                                            </ul>
-                                                            <div class="submenu-img"><a href="category.html"><img src="images/placeholder.png" data-src="images/menu/category-img-04.jpg" class="lazyload" alt=""></a></div>
-                                                        </div>
+                                                    <div class="mmenu-cols column-5" id="categorymenu">
+       
                                                     </div>
                                                     <div class="mmenu-bottom">
                                                         <div class="custom-text"><span>FREE</span> STANDARD DELIVERY ON ORDERS OVER 1M</div>
@@ -954,7 +933,7 @@
         </div>
     </div>
      <!-- luc hien thi index hien len -->
-     <div style="display: none;" class="modal--newsletter js-newslettermodal" data-pause="5000" data-expires="1">
+     <!-- <div style="display: none;" class="modal--newsletter js-newslettermodal" data-pause="5000" data-expires="1">
         <div class="row no-gutters">
             <div class="col-sm d-none d-md-flex align-items-center justify-content-center">
                 <div class="newslettermodal-img"><img src="images/newsletter/newsletter-popup-fashion.png" alt="Subscribe Us"></div>
@@ -982,7 +961,7 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>  -->
     <!--<div class="modal&#45;&#45;newsletter animated-modal js-newslettermodal" data-animation-duration="5000" id="modalNewsletter" style="display: none;" data-pause="1000">-->
     <!--<div class="modal-content">-->
     <!--<div class="modal-body">-->
@@ -1026,7 +1005,9 @@
     <script>
         function logout(){
     window.localStorage.clear();
+    window.sessionStorage.clear();
     window.location.href="index.html";
+    
            }
     </script>
 </body>

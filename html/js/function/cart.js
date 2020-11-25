@@ -3,11 +3,12 @@ function addToCart(data, count, _delete = false) {
 
   let store;
   try {
-    store = storeCookie !={} ? []: JSON.parse(storeCookie) ;
+    store = JSON.parse(storeCookie);
     
   } catch {
     store = [];
   }
+  console.log(store); 
   let flag = false;
 
   for (let i = 0; i < store.length; i++) {
@@ -32,7 +33,7 @@ function addToCart(data, count, _delete = false) {
 }
 
 function clearCart() {
-  setCookie("cart", JSON.stringify({}), 1);
+  setCookie("cart", JSON.stringify([]), 1);
 }
 
 function setTemplate() {
@@ -103,11 +104,12 @@ function setTemplate() {
 }
 
 function clickBuy() {
+  var userId = JSON.parse(localStorage.getItem("userId"));
   let name = $("#customerName").val();
   let address = $("#customerAddress").val();
   let phone = $("#customerPhone").val();
 
-  buy(name, address, phone, 1)
+  buy(name, address, phone, userId)
 }
 
 function buy(name, address, phone, userid) {
@@ -116,7 +118,7 @@ function buy(name, address, phone, userid) {
   let store;
   let data = {
     "UserId": userid,
-    "TotolPrice": 0,
+    "TotalPrice": 0,
     "AddressShipping": address,
     "Date": "2020-11-18T05:12:15.675Z",
     "Status": true,
@@ -137,7 +139,7 @@ function buy(name, address, phone, userid) {
       "ProductId": item.Id,
       "CurrentPrice": item.Price,
       "Quantity": item.Count,
-      "TotalPrice": item.Price*item.Count
+      "TotalLine": item.Price*item.Count
     })
   }
 
@@ -150,9 +152,9 @@ function buy(name, address, phone, userid) {
     dataType: "json",
     data: data
   }).always(function() {
-    alert("Dat hang thanh cong");
+    alert("Success Payment");
     clearCart();
-    location.reload();
+    window.location.href="index.html";
   });
   // .then(function() {
   //   console.log("a");

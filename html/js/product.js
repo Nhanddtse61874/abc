@@ -98,7 +98,7 @@ $(document).ready(function(){
                 </div>
                 <div class="prd-block_actions topline">
                     <div class="prd-block_price"><span class="prd-block_price--actual">$ ${product.CurrentPrice}</span> <span class="prd-block_price--old">$ ${product.Price}</span></div>
-                    <div class="btn-wrap"><button class="btn btn--add-to-cart" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Add to cart</span></button></div>
+                    <div class="btn-wrap"><button class="btn btn--add-to-cart" onclick="addToCart(new Item(${product.Id}, '${product.Name}', '${url}', ${product.CurrentPrice}, 0), 1)"><i class="icon icon-handbag"></i><span>Add to cart</span></button></div>
                     <div class="prd-block_link">
                         <a href="#" class="icon-heart-1"></a>
                         <a href="#" class="icon-share"></a>

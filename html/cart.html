@@ -384,7 +384,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="sidebar-block">
-                            <div class="card-total text-uppercase">Subtotal <span class="card-total-price">$ 294.00</span></div><button class="btn btn--full btn--lg">Buy Now</button>
+                            <div class="card-total text-uppercase">Subtotal <span class="card-total-price">$ 294.00</span></div><a href="checkout-2.html" class="btn"><span>Check Out</span></a>
                         </div>
                         <div class="sidebar-block open">
                             <!-- <div class="sidebar-block_title"><span>APPLY PROMOCODE</span>
@@ -518,6 +518,14 @@
     <script src="js/function/cookie.js"></script>
     <script src="js/function/cart.js"></script>
     <script src="js/app.js"></script>
+    <script>
+        function logout(){
+    window.localStorage.clear();
+    window.sessionStorage.clear();
+    window.location.href="index.html";
+    
+           }
+    </script>
 </body>
 
 </html>

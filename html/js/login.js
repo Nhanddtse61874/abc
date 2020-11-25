@@ -17,36 +17,35 @@ $("#loginForm").submit(function(event)
         }
     }).done(function (response) {
         if (response){
-            sessionStorage.setItem("userId", response.Id);
+            localStorage.setItem("userId", JSON.stringify(response.Id));
 
             $.ajax({
                 "url": `https://localhost:44358/api/knearestneibor-management/users/${response.Id}`,
                 "method": "GET",
-            }).done(function (bigdata) {
-                if (bigdata) {
+            }).done(function () {
+                var id = JSON.parse(localStorage.getItem("userId"));
                     $.ajax({
-                        "url": "https://localhost:44309/api/RecommenceByBoth",
-                        "method": "POST",
-                        "data": { data: bigdata }
+                        method: "POST",
+                        url: `https://localhost:44309/api/RecommenceByBoth?Id=${id}`
+                        ,
+                        dataType: "json",
                     }).done(function(recommended) {
-                        sessionStorage.setItem("Recommence", recommended.name)
+                        console.log(recommended.name);
+                        sessionStorage.setItem("recommencename", recommended.name);
                         if(recommended){
                             $.ajax({
                                 "url": `https://localhost:44358/api/knearestneibor-management/users`,
                                 "method": "POST",
                                 "data" : recommended
+                                
                             }).done(function(products){
-                                console.log(products);
-                                console.log(sessionStorage.getItem("Recommence"));
                                 sessionStorage.setItem("productsIndex", JSON.stringify(products))
                                 window.location.href = "index.html";
                             })
                     
                         }
                     });
-                } else {
-                        alert('failed');
-                }
+                
             })
         }
         else

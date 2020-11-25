@@ -38,7 +38,7 @@ $(document).ready(function () {
       type: "GET",
       url: "https://localhost:44358/api/product-management/" + id,
       dataType: "json",
-      async:false,
+      async:false,  
       success: function (res) {
         let html = "";
         $.each(res, function (i, data) {
